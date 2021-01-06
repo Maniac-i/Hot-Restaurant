@@ -13,44 +13,52 @@
             <div class="col">
                 <div class="jumbotron">
                     <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
-                    <p class="lead">This is where we will display how many tables are left</p>
+                    
                     <hr class="my-4">
                     <p>This is where we will store the other buttons</p>
                     <p class="lead">
-                      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                      <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
+                      <a class="btn btn-primary btn-lg" href="/reservations" role="button">Reserved Tables</a>
                     </p>
                   </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <h5 class="card-header">Current Reservations</h5>
-                    <div class="card-body">
-                      <h5 class="card-title">Special title treatment</h5>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <h5 class="card-header">Wait List</h5>
-                    <div class="card-body">
-                      <h5 class="card-title">Special title treatment</h5>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-            </div>
+        <div id = "all-tables">
+
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-
+    <script> 
+    $.ajax({
+      url: "/api/reserved",
+      method: "GET"
+    }).then((response) =>{
+      console.log(response);
+     
+      var entireTablesSection = "";
+      for(let i = 0; i<response.length; i++){
+        let tableSection = createSection(response[i]);
+        entireTablesSection += tableSection;
+      }
+      function createSection(obj){
+        return `
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h5 class="card-header">${obj.name}</h5>
+                    <div class="card-body">
+                      <p class="card-title">Number of people on your table ${obj.groupSize} </p>
+                      <p class="card-text">Your reservation is made for: ${obj.reservationTime}</p>
+                    </div>
+                  </div>
+            </div>
+        </div>`
+      }
+      $("#all-tables").append(entireTablesSection);
+    })
+    </script>
 </body>
 </html>
