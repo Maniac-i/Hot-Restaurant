@@ -6,6 +6,12 @@
 
     <title>Table</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <style>
+      #table{background-color: grey;
+      padding-left:15px;
+      }
+      h4, p {color:white}
+    </style>
 </head>
 <body>
     <div class="container">
@@ -18,7 +24,7 @@
                     <p>This is where we will store the other buttons</p>
                     <p class="lead">
                       <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
-                      <a class="btn btn-primary btn-lg" href="/reservations" role="button">Reserved Tables</a>
+                      <a class="btn btn-primary btn-lg" href="/form" role="button">Reserve A Table</a>
                     </p>
                   </div>
             </div>
@@ -45,12 +51,12 @@
       }
       function createSection(obj){
         return `
-        <div class="row">
+        <div id="table" class="row">
             <div class="col-12">
                 <div class="card">
-                    <h5 class="card-header">${obj.name}</h5>
+                    <h4 class="card-header">${obj.name}</h4>
                     <div class="card-body">
-                      <p class="card-title">Number of people on your table ${obj.groupSize} </p>
+                      <p class="card-title">Number of people on your table: ${obj.groupSize} </p>
                       <p class="card-text">Your reservation is made for: ${obj.reservationTime}</p>
                     </div>
                   </div>
