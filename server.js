@@ -41,3 +41,5 @@ app.get("/api/waitList", function (req, res) {
 app.listen(PORT, () => {
   console.log("Your server started at the port: " + PORT);
 });
+const publicDirPath = path.join(__dirname, "/style.css");
+app.use(express.static(publicDirPath));
