@@ -16,10 +16,9 @@ app.get("/", function (req, res) {
 
 app.get("/form", function (req, res) {
   res.sendFile(path.join(__dirname, "form.html"));
-
 });
 app.get("/reservations", function (req, res) {
-  res.sendFile(path.join(__dirname, "form.html"));
+  res.sendFile(path.join(__dirname, "table.html"));
 });
 
 app.post("/api/tables", function (req, res) {
