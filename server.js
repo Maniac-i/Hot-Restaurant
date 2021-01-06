@@ -13,11 +13,13 @@ const waitListTable = [];
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
+
 app.get("/form", function (req, res) {
   res.sendFile(path.join(__dirname, "form.html"));
+
 });
 app.get("/reservations", function (req, res) {
-  res.sendFile(path.join(__dirname, "reservations.html"));
+  res.sendFile(path.join(__dirname, "form.html"));
 });
 
 app.post("/api/tables", function (req, res) {
